@@ -1,4 +1,3 @@
-//server.js
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -36,10 +35,10 @@ app.use("/api/contact", contactRoutes);
 
 // Default route
 app.get("/", (req, res) => {
-  res.send("API Flower Shop Running...");
+  res.send("🌸 API Flower Shop Running...");
 });
 
-// PORT phải lấy đúng biến môi trường Render cấp
+// Lắng nghe server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server running on port ${PORT}`);
