@@ -7,7 +7,7 @@ const connectDB = require("./config/db");
 // Load biến môi trường từ .env
 dotenv.config();
 
-// Kết nối Database (⚠️ Chạy trước khi import models)
+// Kết nối Database ( Chạy trước khi import models)
 connectDB();
 
 // Khởi tạo ứng dụng Express
@@ -43,13 +43,13 @@ app.use((err, req, res, next) => {
 
 // Route mặc định
 app.get("/", (req, res) => {
-  res.send("🚀 API Flower Shop Running...");
+  res.send(" API Flower Shop Running...");
 });
 
 // Khai báo PORT đúng cách
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
+  console.log(` Server chạy tại http://localhost:${PORT}`);
 });
 
 console.log("SECRET_KEY:", process.env.SECRET_KEY);
