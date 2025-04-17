@@ -4,13 +4,12 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 
-// Load biến môi trường từ .env
+// Load .env
 dotenv.config();
 
-// Kết nối Database ( Chạy trước khi import models)
+// Kết nối MongoDB
 connectDB();
 
-// Khởi tạo ứng dụng Express
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -25,7 +24,7 @@ const paymentRoutes = require("./routes/paymentRoutes");
 const shippingRoutes = require("./routes/shippingRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 
-// Sử dụng routes API
+// Sử dụng API routes
 app.use("/api/users", userRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/products", productRoutes);
@@ -35,21 +34,13 @@ app.use("/api/payments", paymentRoutes);
 app.use("/api/shipping", shippingRoutes);
 app.use("/api/contact", contactRoutes);
 
-// Middleware xử lý lỗi chung
-app.use((err, req, res, next) => {
-  console.error("Lỗi chi tiết:", err);
-  res.status(500).json({ message: "Lỗi server", error: err.message });
-});
-
-// Route mặc định
+// Default route
 app.get("/", (req, res) => {
-  res.send(" API Flower Shop Running...");
+  res.send("API Flower Shop Running...");
 });
 
-// Khai báo PORT đúng cách
+// PORT phải lấy đúng biến môi trường Render cấp
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(` Server chạy tại http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
-
-console.log("SECRET_KEY:", process.env.SECRET_KEY);
